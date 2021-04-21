@@ -1,5 +1,3 @@
-const { response } = require("express");
-
 const $addToppingBtn = document.querySelector('#add-topping');
 const $pizzaForm = document.querySelector('#pizza-form');
 const $customToppingsList = document.querySelector('#custom-toppings-list');
@@ -53,7 +51,8 @@ const handlePizzaSubmit = event => {
   }
 
   const formData = { pizzaName, createdBy, size, toppings };
-  fetch('./api/pizzas', {
+
+  fetch('/api/pizzas', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -61,14 +60,14 @@ const handlePizzaSubmit = event => {
     },
     body: JSON.stringify(formData)
   })
-  .then(response => response.json())
-  .then(postResponse => {
-    alert('Pizza created successsfully!');
-    console.log(postResponse);
-  })
-  .catch(err => {
-    console.log(err);
-  });
+    .then(response => response.json())
+    .then(postResponse => {
+      alert('Pizza created successfully!');
+      console.log(postResponse);
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };
 
 $pizzaForm.addEventListener('submit', handlePizzaSubmit);
